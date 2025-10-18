@@ -96,7 +96,7 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 // لتغيير الفيديو الخلفية، استخدم الفيديو المحلي
-document.getElementById('bgVideo').src = "https://drive.google.com/uc?export=download&id=1_NAvVEd_IC3V-T1GtToDHk_ytXiAuRdc";
+document.getElementById('bgVideo').src = "بوبا.mp4";
 
 // لتغيير الأغنية، استخدم ملف mp3 المحلي
 document.getElementById('bgAudio').src = "https://drive.google.com/uc?export=download&id=1jAyXPU17LQ7eyGB0cFf8AfeYvDlHdGEU";
