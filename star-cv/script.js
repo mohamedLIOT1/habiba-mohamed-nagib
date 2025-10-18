@@ -46,7 +46,7 @@ function showStoryMessages(msgs) {
 					} else {
 						// بعد انتهاء الرسائل، غيّر الفيديو
 						var vid = document.getElementById('bgVideo');
-						vid.src = "12656_Big_Bang_1080.webm";
+						vid.src = "https://drive.google.com/uc?export=download&id=1GOV079o0Kq0EEaK_9-FjpjUGGb9biAjX";
 						vid.load();
 						vid.play();
 						// بعد الانفجار، أظهر رسالة الحب
@@ -66,7 +66,7 @@ function showStoryMessages(msgs) {
 								// تشغيل الخلفية الجديدة loop-center
 								var vid = document.getElementById('bgVideo');
 								if (vid) {
-									vid.src = "loop-center.mp4";
+									vid.src = "https://drive.google.com/uc?export=download&id=1nADCYdQQAMrHvFHGWmjWS1-W9P5vzvQQ";
 									vid.type = "video/mp4";
 									vid.style.display = '';
 									vid.load();
@@ -96,10 +96,10 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 // لتغيير الفيديو الخلفية، استخدم الفيديو المحلي
-document.getElementById('bgVideo').src = "بوبا.mp4";
+document.getElementById('bgVideo').src = "https://drive.google.com/uc?export=download&id=1_NAvVEd_IC3V-T1GtToDHk_ytXiAuRdc";
 
 // لتغيير الأغنية، استخدم ملف mp3 المحلي
-document.getElementById('bgAudio').src = "بوبا.mp3";
+document.getElementById('bgAudio').src = "https://drive.google.com/uc?export=download&id=1jAyXPU17LQ7eyGB0cFf8AfeYvDlHdGEU";
 
 // تشغيل الأغنية تلقائيًا عند فتح الموقع، وإجبار التشغيل عند أي تفاعل إذا فشل
 window.addEventListener('DOMContentLoaded', function() {
@@ -114,7 +114,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	audio.addEventListener('pause', function() { console.log('[audio] paused'); });
 	audio.addEventListener('error', function(e) {
 		console.error('[audio] error', e);
-		showAudioError('خطأ في تحميل ملف الصوت. تحقق من وجود "بوبا.mp3" وصلاحيات الوصول (Console for details).');
+	showAudioError('خطأ في تحميل ملف الصوت. تحقق من وجود الصوت وصلاحيات الوصول (Console for details).');
 	});
 
 	function showAudioError(msg) {
@@ -136,7 +136,7 @@ window.addEventListener('DOMContentLoaded', function() {
 				fetch(audio.src, { method: 'HEAD' }).then(function(resp) {
 					console.log('[fetch head] status=', resp.status);
 					if (!resp.ok) {
-						showAudioError('ملف الصوت غير متاح (HTTP ' + resp.status + '). تأكد من وجود بوبا.mp3 في نفس المجلد أو صلاحيات السيرفر.');
+						showAudioError('ملف الصوت غير متاح (HTTP ' + resp.status + '). تأكد من وجود الصوت أو صلاحيات السيرفر.');
 					} else {
 						showAudioError('التشغيل التلقائي ممنوع من المتصفح؛ اضغط في أي مكان لبدء التشغيل.');
 						// play on first user interaction
