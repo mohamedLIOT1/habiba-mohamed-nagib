@@ -104,59 +104,6 @@ document.getElementById('bgAudio').src = "بوبا.mp3";
 // تشغيل الأغنية تلقائيًا عند فتح الموقع، وإجبار التشغيل عند أي تفاعل إذا فشل
 window.addEventListener('DOMContentLoaded', function() {
 	var audio = document.getElementById('bgAudio');
-	var errorMsg = document.getElementById('audioErrorMsg');
 	audio.volume = 0.7;
-
-	// Diagnostic logs
-	console.log('[audio] src=', audio.src);
-	audio.addEventListener('play', function() { console.log('[audio] play event fired'); });
-	audio.addEventListener('playing', function() { console.log('[audio] playing'); });
-	audio.addEventListener('pause', function() { console.log('[audio] paused'); });
-	audio.addEventListener('error', function(e) {
-		console.error('[audio] error', e);
-	showAudioError('خطأ في تحميل ملف الصوت. تحقق من وجود الصوت وصلاحيات الوصول (Console for details).');
-	});
-
-	function showAudioError(msg) {
-		if (errorMsg) {
-			errorMsg.innerHTML = '⚠️ ' + msg;
-			errorMsg.style.display = 'block';
-		} else {
-			alert(msg);
-		}
-	}
-
-	function tryPlay() {
-		console.log('[audio] attempt play');
-		var playPromise = audio.play();
-		if (playPromise !== undefined) {
-			playPromise.then(function() { console.log('[audio] autoplay succeeded'); }).catch(function(err) {
-				console.warn('[audio] autoplay failed:', err);
-				// If autoplay failed, test fetching the file to see if it's reachable
-				fetch(audio.src, { method: 'HEAD' }).then(function(resp) {
-					console.log('[fetch head] status=', resp.status);
-					if (!resp.ok) {
-						showAudioError('ملف الصوت غير متاح (HTTP ' + resp.status + '). تأكد من وجود الصوت أو صلاحيات السيرفر.');
-					} else {
-						showAudioError('التشغيل التلقائي ممنوع من المتصفح؛ اضغط في أي مكان لبدء التشغيل.');
-						// play on first user interaction
-						var forcePlay = function() {
-							audio.play().then(function(){ console.log('[audio] play after interaction success'); errorMsg.style.display = 'none'; }).catch(function(e){ console.error('[audio] play after interaction failed', e); });
-							document.removeEventListener('click', forcePlay);
-							document.removeEventListener('touchstart', forcePlay);
-							document.removeEventListener('scroll', forcePlay);
-						};
-						document.addEventListener('click', forcePlay);
-						document.addEventListener('touchstart', forcePlay);
-						document.addEventListener('scroll', forcePlay);
-					}
-				}).catch(function(fetchErr) {
-					console.error('[fetch head] error', fetchErr);
-					showAudioError('فشل الوصول إلى ملف الصوت. تأكد من أن الملف في نفس المجلد وأنه يمكن الوصول إليه.');
-				});
-			});
-		}
-	}
-
-	tryPlay();
+	audio.play();
 });
