@@ -46,7 +46,7 @@ function showStoryMessages(msgs) {
 					} else {
 						// بعد انتهاء الرسائل، غيّر الفيديو
 						var vid = document.getElementById('bgVideo');
-						vid.src = "https://drive.google.com/uc?export=download&id=1GOV079o0Kq0EEaK_9-FjpjUGGb9biAjX";
+						vid.src = "12656_Big_Bang_1080.webm";
 						vid.load();
 						vid.play();
 						// بعد الانفجار، أظهر رسالة الحب
@@ -66,7 +66,7 @@ function showStoryMessages(msgs) {
 								// تشغيل الخلفية الجديدة loop-center
 								var vid = document.getElementById('bgVideo');
 								if (vid) {
-									vid.src = "https://drive.google.com/uc?export=download&id=1nADCYdQQAMrHvFHGWmjWS1-W9P5vzvQQ";
+									vid.src = "loop-center.mp4";
 									vid.type = "video/mp4";
 									vid.style.display = '';
 									vid.load();
@@ -99,7 +99,7 @@ window.addEventListener('DOMContentLoaded', function() {
 document.getElementById('bgVideo').src = "بوبا.mp4";
 
 // لتغيير الأغنية، استخدم ملف mp3 المحلي
-document.getElementById('bgAudio').src = "https://drive.google.com/uc?export=download&id=1jAyXPU17LQ7eyGB0cFf8AfeYvDlHdGEU";
+document.getElementById('bgAudio').src = "بوبا.mp3";
 
 // تشغيل الأغنية تلقائيًا عند فتح الموقع، وإجبار التشغيل عند أي تفاعل إذا فشل
 window.addEventListener('DOMContentLoaded', function() {
