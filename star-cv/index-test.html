@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Story</title>
+</head>
+<body>
+    <!-- فيديو خلفية قابل للتغيير -->
+    <video id="bgVideo" class="background-video" src="بوبا.mp4" type="video/mp4" autoplay loop muted playsinline style="position:fixed;top:0;left:0;width:100vw;height:100vh;object-fit:cover;z-index:-1;background:#000;"></video>
+
+    <!-- مشغل أغنية mp3 من الإنترنت للتجربة -->
+    <audio id="bgAudio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3" autoplay loop controls style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:300;width:320px;background:#222a;border-radius:16px;box-shadow:0 0 12px #ffd70044;"></audio>
+    <div id="audioMsg" style="display:none;position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#222a;color:#ffd700;padding:10px 22px;border-radius:12px;z-index:301;font-size:1.1rem;box-shadow:0 0 8px #ffd70044;">إذا لم يعمل الصوت تلقائيًا، اضغط زر التشغيل في الأسفل</div>
+
+    <!-- رسائل القصة تظهر واحدة تلو الأخرى -->
+    <!-- خط Orbitron من Google Fonts لأجواء الفضاء -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <div id="storyMsg" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2.2rem;font-family:'Orbitron', 'Montserrat', Arial, sans-serif;color:#f7f7fa;background:rgba(30,34,54,0.82);padding:28px 36px;border-radius:22px;z-index:100;opacity:0;pointer-events:none;text-align:center;min-width:220px;max-width:90vw;letter-spacing:1.1px;box-shadow:0 0 18px 2px #222a,0 0 32px 8px #fff1;backdrop-filter:blur(1.2px);border:1.5px solid #fff2;">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
