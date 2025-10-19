@@ -1,8 +1,40 @@
 // كتم صوت الفيديو تلقائيًا عند التشغيل
 window.addEventListener('DOMContentLoaded', function() {
 	var vid = document.getElementById('bgVideo');
-	vid.muted = false;
-	vid.volume = 0.7;
+	var audio = document.getElementById('bgAudio');
+	// إعداد الفيديو
+	if (vid) {
+		vid.muted = false;
+		vid.volume = 0.7;
+		var playPromise = vid.play();
+		if (playPromise !== undefined) {
+			playPromise.catch(function() {
+				var forcePlayVideo = function() {
+					vid.play();
+				};
+				document.addEventListener('click', forcePlayVideo, { once: true });
+				document.addEventListener('touchstart', forcePlayVideo, { once: true });
+				document.addEventListener('mousedown', forcePlayVideo, { once: true });
+				document.addEventListener('keydown', forcePlayVideo, { once: true });
+			});
+		}
+	}
+	// إعداد الصوت
+	if (audio) {
+		audio.volume = 0.7;
+		var playPromiseAudio = audio.play();
+		if (playPromiseAudio !== undefined) {
+			playPromiseAudio.catch(function() {
+				var forcePlayAudio = function() {
+					audio.play();
+				};
+				document.addEventListener('click', forcePlayAudio, { once: true });
+				document.addEventListener('touchstart', forcePlayAudio, { once: true });
+				document.addEventListener('mousedown', forcePlayAudio, { once: true });
+				document.addEventListener('keydown', forcePlayAudio, { once: true });
+			});
+		}
+	}
 });
 // رسائل القصة بالإنجليزي
 const storyMessages = [
@@ -57,12 +89,7 @@ function showStoryMessages(msgs) {
 							// بعد 6 ثواني من ظهور BOBA، أخفيها ونفذ باقي الكود
 							setTimeout(function() {
 								gsap.to(msgBox, {duration: 2.5, opacity: 0, scale: 0.7, filter: 'blur(8px)', ease: 'power2.in'});
-								// إيقاف الأغنية
-								var audio = document.getElementById('bgAudio');
-								if (audio) {
-									audio.pause();
-									audio.currentTime = 0;
-								}
+								// لا توقف الموسيقى
 								// تشغيل الخلفية الجديدة loop-center
 								var vid = document.getElementById('bgVideo');
 								if (vid) {
@@ -72,6 +99,39 @@ function showStoryMessages(msgs) {
 									vid.load();
 									vid.play();
 								}
+								// زرار يظهر بعد كلمة BOBA
+								setTimeout(function() {
+									var btn = document.createElement('button');
+									btn.textContent = "view";
+									btn.style.position = "fixed";
+									btn.style.left = "50%";
+									btn.style.bottom = "6%";
+									btn.style.transform = "translateX(-50%)";
+									btn.style.padding = "14px 34px";
+									btn.style.fontSize = "1.15rem";
+									btn.style.background = "linear-gradient(90deg, #232526 0%, #414345 100%)";
+									btn.style.color = "#fff";
+									btn.style.border = "none";
+									btn.style.borderRadius = "24px";
+									btn.style.boxShadow = "0 4px 24px #23252688";
+									btn.style.letterSpacing = "1.5px";
+									btn.style.fontWeight = "600";
+									btn.style.zIndex = "200";
+									btn.style.cursor = "pointer";
+									btn.style.transition = "background 0.3s, transform 0.2s";
+									btn.onmouseover = function(){
+										btn.style.background = "linear-gradient(90deg, #414345 0%, #232526 100%)";
+										btn.style.transform = "translateX(-50%) scale(1.07)";
+									};
+									btn.onmouseout = function(){
+										btn.style.background = "linear-gradient(90deg, #232526 0%, #414345 100%)";
+										btn.style.transform = "translateX(-50%) scale(1)";
+									};
+									btn.onclick = function(){
+										window.location.href = "about.html";
+									};
+									document.body.appendChild(btn);
+								}, 2000);
 							}, 6000);
 						}, 6000); // 6 ثواني بعد الانفجار
 					}
@@ -95,15 +155,4 @@ window.addEventListener('DOMContentLoaded', function() {
 	}, 2500);
 });
 
-// لتغيير الفيديو الخلفية، استخدم الفيديو المحلي
-document.getElementById('bgVideo').src = "بوبا.mp4";
-
-// لتغيير الأغنية، استخدم ملف mp3 المحلي
-document.getElementById('bgAudio').src = "بوبا.mp3";
-
-// تشغيل الأغنية تلقائيًا عند فتح الموقع، وإجبار التشغيل عند أي تفاعل إذا فشل
-window.addEventListener('DOMContentLoaded', function() {
-	var audio = document.getElementById('bgAudio');
-	audio.volume = 0.7;
-	audio.play();
-});
+// لا تغير الفيديو أو الصوت تلقائيًا عند تحميل الصفحة، فقط حسب تسلسل القصة
